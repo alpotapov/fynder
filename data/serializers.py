@@ -1,4 +1,4 @@
-from data.models import Venue, VenueToTag, Tag
+from data.models import Venue, Category
 from rest_framework import serializers
 
 

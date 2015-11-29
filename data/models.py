@@ -19,6 +19,9 @@ class Venue (models.Model):
 
     categories = models.ManyToManyField('Category')
 
+    def __unicode__(self):
+        return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=True, default='')
@@ -31,6 +34,9 @@ class Category(models.Model):
     leisure = models.IntegerField(default=0)
     shopping = models.IntegerField(default=0)
     restaurant = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.name
 
     def as_array(self):
         return [

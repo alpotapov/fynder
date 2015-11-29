@@ -9,6 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
+from data.models import Venue
+from data.serializers import VenueSerializer
+
 
 class JSONResponse(HttpResponse):
     """
@@ -23,6 +26,15 @@ class JSONResponse(HttpResponse):
 @csrf_exempt
 @api_view(['GET', 'POST'])
 def venues_search(request):
+    if request.method == 'GET':
+        data = Venue.objects.all()
+        serializer = VenueSerializer(instance=data, many=True)
+
+        print data
+        print serializer
+
+        return JSONResponse(serializer.data)
+
     if request.method == 'POST':
         data = JSONParser().parse(request)
         people = {
@@ -37,4 +49,10 @@ def venues_search(request):
 
         # TODO: make a call to search function
 
-        return JSONResponse(None)
+        data = Venue.objects.all()
+        serializer = VenueSerializer(instance=data, many=True)
+
+        print data
+        print serializer
+
+        return JSONResponse(serializer.data)
