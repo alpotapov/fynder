@@ -25,15 +25,16 @@ class JSONResponse(HttpResponse):
 def venues_search(request):
     if request.method == 'POST':
         data = JSONParser().parse(request)
-        print data
         people = {
-            'male': request.POST.get('male'),
-            'female': request.POST.get('female'),
-            'child': request.POST.get('child'),
+            'male': data['people']['male'],
+            'female': data['people']['female'],
+            'child': data['people']['child'],
         }
 
-        budget = request.POST.get('price')
-        time = request.POST.get('time')
-        activities = json.load(request.POST.get('activities'))
+        budget = data['budget']
+        time = data['time']
+        activities = data['activities']
 
         # TODO: make a call to search function
+
+        return JSONResponse(None)

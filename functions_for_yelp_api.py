@@ -117,7 +117,7 @@ def query_api(term, location):
         term (str): The search term to query.
         location (str): The location of the business to query.
     """
-    response = search(term, location)
+    response = search2(term, location)
 
     businesses = response.get('businesses')
 
@@ -159,7 +159,7 @@ def get_id(jsonitem):
 def get_image_url_original(jsonitem)    :        
     return property_getter('images_url_original',jsonitem)
     
-def get_rating()         :   
+def get_rating(jsonitem):
     return property_getter('rating',jsonitem)
     
 def get_country_code(jsonitem):
@@ -172,7 +172,7 @@ def get_city(jsonitem):
 def get_postal_code(jsonitem):
     return jsonitem['location']['postal_code']
     
-def get_postal_code(jsonitem):
+def get_address(jsonitem):
     return jsonitem['location']['address']
     
 def make_query(term,location,number_of_results):
