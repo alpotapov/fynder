@@ -169,8 +169,8 @@ def get_goodForKids(jsonitem):
 
 
 def get_image_url_original(jsonitem):
-    return property_getter('images_url_original', jsonitem)
-
+    a = property_getter('images_url_original', jsonitem)
+    return a[0]
 
 def get_rating(jsonitem):
     return property_getter('rating', jsonitem)
