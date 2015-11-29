@@ -25,6 +25,33 @@ class JSONResponse(HttpResponse):
 
 @csrf_exempt
 @api_view(['GET', 'POST'])
+def use_case_1(request):
+    if request.method == 'GET':
+        data = Venue.objects.filter(id__in=(202, 203)).all()
+        serializer = VenueSerializer(instance=data, many=True)
+
+        print data
+        print serializer
+
+        return JSONResponse(serializer.data)
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
+def use_case_2(request):
+    if request.method == 'GET':
+        data = Venue.objects.all()
+        serializer = VenueSerializer(instance=data, many=True)
+
+        print data
+        print serializer
+
+        return JSONResponse(serializer.data)
+
+
+
+@csrf_exempt
+@api_view(['GET', 'POST'])
 def venues_search(request):
     if request.method == 'GET':
         data = Venue.objects.all()

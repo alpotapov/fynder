@@ -20,5 +20,7 @@ from data import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^search/', views.venues_search, name='venues_search')
+    url(r'^search/', views.venues_search, name='venues_search'),
+    url(r'^use_case_1/', views.use_case_1, name='use_case_1'),
+    url(r'^use_case_2/', views.use_case_2, name='use_case_2')
 ]
