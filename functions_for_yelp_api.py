@@ -7,6 +7,7 @@ import sys
 import urllib
 import urllib2
 import oauth2
+import math
 
 from data.models import Category, Venue
 
@@ -163,6 +164,9 @@ def get_price_range(jsonitem):
 def get_id(jsonitem):
     return property_getter('id', jsonitem)
 
+def get_goodForKids(jsonitem):
+    return property_getter('GoodForKids', jsonitem)
+
 
 def get_image_url_original(jsonitem):
     return property_getter('images_url_original', jsonitem)
@@ -203,7 +207,7 @@ def save_to_database(jsonitem):
     v = Venue()
     v.name = get_name(jsonitem)
     v.image_url_original = get_image_url_original(jsonitem)
-    v.rating = get_rating(jsonitem)
+    v.rating = math.floor(get_rating(jsonitem))
     v.price_range = get_price_range(jsonitem)
     v.yelp_id = get_id(jsonitem)
     v.country_code = get_country_code(jsonitem)
