@@ -183,4 +183,39 @@ def make_query(term,location,number_of_results):
         list_of_responses.append(i)
     
     return list_of_responses
+    
+def group_grade(nWoman,nMan):
+    max_number = max(nWoman,nMan)
+    faktor_man=1
+    faktor_woman=-2
+    sensM = 0.1
+    sensW= 0.2
+    
+    deltaM = 1 if nMan==max_number else ((max_number-nMan)*sensM)
+    deltaW = 1 if nWoman==max_number else ((max_number-nWoman)*sensW)
+    
+    endFactorM = 0 if nMan==0 else (faktor_man*max_number*deltaM)
+    endFactorW = 0 if nWoman==0 else (faktor_woman*max_number*deltaW)
+        
+    final_grade = endFactorM + endFactorW
+    
+    return final_grade
+    
+def get_notes_from_our_database(activelife):
+    "Input = category type - search our database and return grades"
+    "Case without category - handle it and dont sum anything"  
+    "Return the whole line as list"
+    return 0
+    
+def calculate_category_grade(category_list,user_category_choice):
+    sumi=0    
+    switch user
+        sumi +=  
 
+def calculate_manwoman_grade():
+    note = 1 if nMan==max_number else ((max_number-nMan)*sensM)
+
+def calculate_time_grade():
+    
+def calculate_final_grade():
+    return category*manwoman*time
