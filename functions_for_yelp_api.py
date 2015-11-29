@@ -282,17 +282,7 @@ def calculate_time_grade(category_notes, user_time_choice):
     return sum3
 
 
-
-    
-# def calculate_category_grade(category_list,user_category_choice):
-#     sumi=0
-#     switch user
-#         sumi +=
-#
-# def calculate_manwoman_grade():
-#     note = 1 if nMan==max_number else ((max_number-nMan)*sensM)
-#
-# def calculate_time_grade():
-#
-# def calculate_final_grade():
-#     return category*manwoman*time
+ def calculate_final_grade(category_notes,nMan,nWoman,kids_count,goodForKids,user_category_choice,user_time_choice):
+     a1 = category_notes
+     groupGrade1 = group_grade(nWoman,nMan)
+     return calculate_category_grade(a1,user_category_choice)*calculate_manwoman_grade(groupGrade1, a1, kids_count, goodForKids)*calculate_time_grade(a1, user_time_choice)
