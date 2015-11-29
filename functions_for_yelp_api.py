@@ -186,6 +186,27 @@ def make_query(term,location,number_of_results):
     
     return list_of_responses
     
+def save_to_database(jsonitem):
+    v = Venue();
+    v.name = getname(jsonitem)
+    v.image_url_original=get_image_url_original(jsonitem)
+    v.rating = get_rating(jsonitem)
+    v.price_range=get_price_range(jsonitem)
+    v.yelp_id=get_id(jsonitem)
+    v.country_code=get_country_code(jsonitem)
+    v.city=get_city(jsonitem)
+    v.postal_code=get_postal_code(jsonitem)
+    v.address=get_address(jsonitem)
+    v.lat=get_latitude(jsonitem)
+    v.lon=get_longitude(jsonitem)
+           
+    v.save()
+    return 0
+    
+def save_results(list_of_responses1):
+    for i in list_of_responses1:
+        save_to_database(i)        
+    
 def group_grade(nWoman,nMan):
     max_number = max(nWoman,nMan)
     faktor_man=1
@@ -283,6 +304,7 @@ def calculate_time_grade(category_notes, user_time_choice):
 
 
  def calculate_final_grade(category_notes,nMan,nWoman,kids_count,goodForKids,user_category_choice,user_time_choice):
+     "Returns double"
      a1 = category_notes
      groupGrade1 = group_grade(nWoman,nMan)
      return calculate_category_grade(a1,user_category_choice)*calculate_manwoman_grade(groupGrade1, a1, kids_count, goodForKids)*calculate_time_grade(a1, user_time_choice)
