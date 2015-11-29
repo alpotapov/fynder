@@ -40,7 +40,7 @@ def use_case_1(request):
 @api_view(['GET', 'POST'])
 def use_case_2(request):
     if request.method == 'GET':
-        data = Venue.objects.all()
+        data = Venue.objects.filter(id__in=[204,]).all()
         serializer = VenueSerializer(instance=data, many=True)
 
         print data
