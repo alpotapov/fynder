@@ -55,7 +55,7 @@ def use_case_2(request):
 def venues_search(request):
     if request.method == 'GET':
         data = Venue.objects.all()
-        serializer = VenueSerializer(instance=data[:10], many=True)
+        serializer = VenueSerializer(instance=data, many=True)
 
         print data
         print serializer
@@ -77,7 +77,7 @@ def venues_search(request):
         # TODO: make a call to search function
 
         data = Venue.objects.all()
-        serializer = VenueSerializer(instance=data[:10], many=True)
+        serializer = VenueSerializer(instance=data, many=True)
 
         print data
         print serializer
