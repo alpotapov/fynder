@@ -17,10 +17,11 @@ class Venue (models.Model):
     lat = models.CharField(max_length=255, blank=True, default='')
     lon = models.CharField(max_length=255, blank=True, default='')
 
+    categories = models.ManyToManyField('Category')
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=True, default='')
-    venue = models.ForeignKey('Venue')
     woman = models.IntegerField(default=0)
     man = models.IntegerField(default=0)
     morning = models.IntegerField(default=0)
@@ -30,3 +31,8 @@ class Category(models.Model):
     leisure = models.IntegerField(default=0)
     shopping = models.IntegerField(default=0)
     restaurant = models.IntegerField(default=0)
+
+    def as_array(self):
+        return [
+            self.woman, self.man, self.morning, self.noon, self.evening, self.culture, self.leisure, self.shopping, self.restaurant
+        ]
