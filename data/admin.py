@@ -1,16 +1,16 @@
 from django.contrib import admin
-from data.models import Venue, Tag, VenueToTag
+from data.models import Venue, Category
 
 
-class VenueToTagInline(admin.StackedInline):
-    model = VenueToTag
+class CategoryInline(admin.StackedInline):
+    model = Category
+
 
 class VenueAdmin(admin.ModelAdmin):
     inlines = [
-        VenueToTagInline,
+        CategoryInline,
     ]
 
 
 admin.site.register(Venue, VenueAdmin)
-admin.site.register(Tag)
-admin.site.register(VenueToTag)
+admin.site.register(Category)

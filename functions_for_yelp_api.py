@@ -8,6 +8,8 @@ import urllib
 import urllib2
 import oauth2
 
+from data.models import Category, Venue
+
 
 
 API_HOST = 'api.yelp.com'
@@ -201,10 +203,19 @@ def group_grade(nWoman,nMan):
     
     return final_grade
     
-def get_notes_from_our_database(activelife):
-    "Input = category type - search our database and return grades"
-    "Case without category - handle it and dont sum anything"  
-    "Return the whole line as list"
+
+def get_notes_from_our_database(jsonitem, category_name):
+    # "Input = category type - search our database and return grades"
+    # "Case without category - handle it and dont sum anything"
+    # "Return the whole line as list"
+    venue_id = get_id(jsonitem)
+
+    venue = Venue.objects.get(yelp_id=venue_id)
+    categories = Category.objects.filter(name=category_name).filter(venue=venue).all()
+
+    print categories
+
+
     return 0
     
 def calculate_category_grade(category_notes,user_category_choice):
@@ -269,6 +280,19 @@ def calculate_time_grade(category_notes, user_time_choice):
         
     sum3 = binary_Morning*category_notes[3] + binary_Noon*category_notes[4] + binary_Evening*category_notes[5]
     return sum3
+
+
+
     
-def calculate_final_grade():
-    return category*manwoman*time
+# def calculate_category_grade(category_list,user_category_choice):
+#     sumi=0
+#     switch user
+#         sumi +=
+#
+# def calculate_manwoman_grade():
+#     note = 1 if nMan==max_number else ((max_number-nMan)*sensM)
+#
+# def calculate_time_grade():
+#
+# def calculate_final_grade():
+#     return category*manwoman*time
