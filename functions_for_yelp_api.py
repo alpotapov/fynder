@@ -207,15 +207,68 @@ def get_notes_from_our_database(activelife):
     "Return the whole line as list"
     return 0
     
-def calculate_category_grade(category_list,user_category_choice):
-    sumi=0    
-    switch user
-        sumi +=  
+def calculate_category_grade(category_notes,user_category_choice):
+    "Give user_category_choice as list of options eg (""Restaurant"",""Culture"")"
+    "Category notes as [6]=culture,[7]=leisure,[8]=shopping,[9]=restaurant"
+    sumi=0  
+    binary_Rest=0
+    binary_Culture=0
+    binary_Leisure=0
+    binary_Shopping=0
+    
 
-def calculate_manwoman_grade():
-    note = 1 if nMan==max_number else ((max_number-nMan)*sensM)
+    if "Restaurant" in user_category_choice:
+        binary_Rest = 1
+    if "Culture" in user_category_choice:
+        binary_Culture = 1
+    if "Sport" in user_category_choice:
+        binary_Leisure = 1
+    if "Surprise" in user_category_choice:
+        binary_Rest=0.25
+        binary_Culture=0.25
+        binary_Leisure=0.25
+        binary_Shopping=0.25
+            
+    if "Bar" in user_category_choice:
+        binary_Rest = 1
+    if "Shopping" in user_category_choice:
+        binary_Shopping = 1
+        
+    sumi = binary_Rest * category_notes[9] + binary_Culture*category_notes[6] + binary_Leisure*category_notes[7] + binary_Shopping*category_notes[8]
+    return sumi
+        
+def calculate_manwoman_grade(groupgrade, category_notes, kids_count, goodForKids):
+    "goodforKids - parameter from business json['business']['goodForKids']"
+    "kids count = how many kids are joining"
+    factorman=0.5
+    factorwoman = 0.5    
+    
+    factorman= 1 if groupgrade>0 else 0
+    factorwoman= 0 if groupgrade>0 else 1
+    sum2 = factorwoman*category_notes[0] + factorman*category_notes[1]
+    
+    if kids_count>0:
+        sum2 *= goodForKids
+    
+    return sum2
 
-def calculate_time_grade():
+def calculate_time_grade(category_notes, user_time_choice):
+    "give time user chose (eg Noon) as string"
+    "category notes -> morning [3], noon [4], evening [5]"
+    sum3=0
+    
+    binary_Noon=0
+    binary_Evening=0
+    binary_Morning=0
+    if "Noon" in user_category_choice:
+        binary_Noon=1
+    if "Evening" in user_category_choice:
+        binary_Evening=1
+    if "Morning" in user_category_choice:
+        binary_Morning=1
+        
+    sum3 = binary_Morning*category_notes[3] + binary_Noon*category_notes[4] + binary_Evening*category_notes[5]
+    return sum3
     
 def calculate_final_grade():
     return category*manwoman*time
